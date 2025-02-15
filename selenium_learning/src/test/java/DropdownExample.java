@@ -1,13 +1,27 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.util.List;
 
 public class DropdownExample {
     WebDriver driver;
 
+    @BeforeMethod
+    public void openDropDownTestPage(){
+        System.setProperty("webdriver.chrome.driver","D:\\Level 4\\L4 S1\\Selenium Practice\\Driver\\chromedriver-win64\\chromedriver.exe");
+        driver=new ChromeDriver();
+        Dimension newSize=new Dimension(800,600);
+        driver.manage().window().setSize(newSize);
+        driver.get("https://www.leafground.com/select.xhtml");
+    }
+
+    @Test
     public void dropDownTestPage() throws InterruptedException {
         WebElement dropdown=driver.findElement(By.xpath("//select[@class='ui-selectonemenu']"));
         Select select=new Select(dropdown);
@@ -32,8 +46,21 @@ public class DropdownExample {
         //selecting value in a Bootstrap dropdown
         WebElement dropdown2=driver.findElement(By.xpath("//div[@id='j_idt87:country']"));
         dropdown2.click();
-        List<WebElement>listofdropdown2values=driver.findElements(By.xpath(""));
+        List<WebElement>listofdropdown2values=driver.findElements(By.xpath("//ul[@id='j_idt87:country_items']/li"));
+        for (WebElement element:listofdropdown2values){
+            String dropdownValue=element.getText();
+            if (dropdownValue.equals("USA")){
+                element.click();
+                break;
+            }
+        }
 
 
+    }
+
+    //Google search - pick a value from suggestions
+    @Test
+    public void googleSearchDropDown(){
+        driver.get("https://www.google.com/");
     }
 }
