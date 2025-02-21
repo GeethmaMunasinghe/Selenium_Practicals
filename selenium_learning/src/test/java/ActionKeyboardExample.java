@@ -7,6 +7,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class ActionKeyboardExample {
     WebDriver driver;
 
@@ -44,7 +46,20 @@ public class ActionKeyboardExample {
     }
 
     @Test
-    public void KeyBoardActionTest2(){
+    public void KeyBoardActionTest2() throws InterruptedException {
+        driver.get("https://www.leafground.com/list.xhtml");
+        Thread.sleep(4000);
+
+        List<WebElement> selectable=driver.findElements(By.xpath("//ul[@aria-label='From']/li"));
+        int size=selectable.size();
+        System.out.println("Li count is: "+size);
+
+        Actions actions=new Actions(driver);
+        actions.keyDown(Keys.CONTROL)
+                .click(selectable.get(0))
+                .click(selectable.get(1))
+                .click(selectable.get(2))
+                .perform();
 
     }
 }
