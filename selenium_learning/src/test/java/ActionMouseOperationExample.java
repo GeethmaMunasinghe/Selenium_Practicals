@@ -34,7 +34,10 @@ public class ActionMouseOperationExample {
         actions.dragAndDrop(from,to).perform();
 
         System.out.println("3. Slider operation...");
-
+        WebElement sliderpoint1=driver.findElement(By.xpath("//div[@id='form:j_idt125']/span[1]"));
+        System.out.println("Location of sliderpoint1 before moving: "+sliderpoint1.getLocation());
+        actions.dragAndDropBy(sliderpoint1,50,0).perform();
+        System.out.println("Location of sliderpoint1 after moving: "+sliderpoint1.getLocation());
 
 
     }
