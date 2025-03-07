@@ -76,6 +76,10 @@ public class WebTableExample {
             }
         }
 
+        //select one checkbox
+        int tblRow=1;
+        webDriver.findElement(By.xpath("//table[@id='productTable']/tbody/tr["+tblRow+"]/td[4]/input")).click();
+
     }
 
 
