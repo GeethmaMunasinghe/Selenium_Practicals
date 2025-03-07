@@ -14,6 +14,7 @@ public class WebTableExample {
         System.setProperty("webdriver.chrome.driver","D:\\Level 4\\L4 S1\\Selenium Practice\\Driver\\chromedriver-win64\\chromedriver.exe");
         webDriver=new ChromeDriver();
         webDriver.manage().window().maximize();
+        webDriver.get("https://testautomationpractice.blogspot.com/");
 
     }
 
@@ -41,11 +42,19 @@ public class WebTableExample {
         }
 
         //print ID and Name only
+            //find the product price, which Name related to Tablet
         for (int i=1;i<=rowCount;i++){
             String tblID=webDriver.findElement(By.xpath("//table[@id='productTable']/tbody/tr["+i+"]/td[1]")).getText();
             String tblProductName=webDriver.findElement(By.xpath("//table[@id='productTable']/tbody/tr["+i+"]/td[2]")).getText();
 
-            System.out.println("Table ID: "+tblID+"Product Name is : "+tblProductName);
+            System.out.println("Table ID: "+tblID+" Product Name is : "+tblProductName);
+
+            if (tblProductName.equals("Tablet")){
+                String productPrice=webDriver.findElement(By.xpath("//table[@id='productTable']/tbody/tr["+i+"]/td[3]")).getText();
+                System.out.println(tblProductName + " Relevent price is : "+ productPrice);
+
+                break;
+            }
         }
 
     }
