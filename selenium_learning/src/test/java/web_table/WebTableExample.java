@@ -2,9 +2,12 @@ package web_table;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 public class WebTableExample {
     WebDriver webDriver;
@@ -19,7 +22,7 @@ public class WebTableExample {
     }
 
     @Test
-    public void WebTableTest(){
+    public void WebTableTest() throws InterruptedException {
         //how many rows in the table
         int rowCount=webDriver.findElements(By.xpath("//table[@id='productTable']/tbody/tr")).size();
         System.out.println("Rows Count: "+rowCount);
@@ -54,6 +57,22 @@ public class WebTableExample {
                 System.out.println(tblProductName + " Relevent price is : "+ productPrice);
 
                 break;
+            }
+        }
+
+        //select all checkboxes
+        int pageCount=webDriver.findElements(By.xpath("//ul[@id='pagination']/li")).size();
+        List<WebElement> pages=webDriver.findElements(By.xpath("//ul[@id='pagination']/li"));
+
+        for (int k=0;k<pageCount;k++){
+            pages.get(k).click();
+            Thread.sleep(1000);
+            for (int i=1;i<=rowCount;i++){
+                boolean atb=webDriver.findElement(By.xpath("//table[@id='productTable']/tbody/tr["+i+"]/td[4]/input")).isSelected();
+                if(!atb){
+                    webDriver.findElement(By.xpath("//table[@id='productTable']/tbody/tr["+i+"]/td[4]/input")).click();
+                    Thread.sleep(300);
+                }
             }
         }
 
