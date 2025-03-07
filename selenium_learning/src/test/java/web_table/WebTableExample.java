@@ -39,6 +39,15 @@ public class WebTableExample {
             }
             System.out.println(); //for the line break
         }
+
+        //print ID and Name only
+        for (int i=1;i<=rowCount;i++){
+            String tblID=webDriver.findElement(By.xpath("//table[@id='productTable']/tbody/tr["+i+"]/td[1]")).getText();
+            String tblProductName=webDriver.findElement(By.xpath("//table[@id='productTable']/tbody/tr["+i+"]/td[2]")).getText();
+
+            System.out.println("Table ID: "+tblID+"Product Name is : "+tblProductName);
+        }
+
     }
 
 
