@@ -1,5 +1,6 @@
 package web_table;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeMethod;
@@ -18,6 +19,11 @@ public class WebTableExample {
 
     @Test
     public void WebTableTest(){
+        int rowCount=webDriver.findElements(By.xpath("//table[@id='productTable']/tbody/tr")).size();
+        System.out.println("Rows Count: "+rowCount);
+
+        int columnCount=webDriver.findElements(By.xpath("//table[@id='productTable']/thead/tr/th")).size();
+        System.out.println("Column Count: "+columnCount);
 
     }
 
