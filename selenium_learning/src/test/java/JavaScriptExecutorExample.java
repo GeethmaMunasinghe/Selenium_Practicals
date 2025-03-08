@@ -1,3 +1,4 @@
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeMethod;
@@ -17,6 +18,11 @@ public class JavaScriptExecutorExample {
 
     @Test
     public void JSExecutorTests(){
+        JavascriptExecutor executor= (JavascriptExecutor) driver;
+
+        //Get an alert box in to Web page using JavaScript
+        executor.executeScript("alert('Hello World');");
+
 
     }
 
