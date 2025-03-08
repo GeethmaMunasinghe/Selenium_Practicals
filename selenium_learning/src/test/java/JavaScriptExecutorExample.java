@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 
 public class JavaScriptExecutorExample {
     WebDriver driver;
+    JavascriptExecutor executor;
 
     @BeforeMethod
     public void openJSExecutorPage(){
@@ -20,7 +21,7 @@ public class JavaScriptExecutorExample {
 
     @Test
     public void JSExecutorTests() throws InterruptedException {
-        JavascriptExecutor executor= (JavascriptExecutor) driver;
+        executor= (JavascriptExecutor) driver;
 
         //Get an alert box in to Web page using JavaScript
         //executor.executeScript("alert('Hello World');");
@@ -46,6 +47,33 @@ public class JavaScriptExecutorExample {
 
         Thread.sleep(4000);
 
+        //Scrolling the page
+        scrollPage(); //Calling the method
+
+
+
+
+
+    }
+
+    public void scrollPage() throws InterruptedException {
+        //scroll to some position
+        executor.executeScript("window.scrollTo(0,1000);");
+        System.out.println("Current page YOffSet value is: "+executor.executeScript("return window.pageYOffset;"));
+        executor.executeScript("window.scrollTo(0,-1000);");
+        Thread.sleep(5000);
+
+        //scroll to bottom of the page by pixel number
+        executor.executeScript("window.scrollTo(0,document.body.scrollHeight);)");
+        Thread.sleep(5000);
+
+        //scroll to the top of the page
+        executor.executeScript("window.scrollTo(0,0)");
+        Thread.sleep(5000);
+
+        //scroll the page till the element is visible
+        WebElement scrollIntoElement=driver.findElement(By.xpath("//label[text()='Gender:']"));
+        executor.executeScript("arguments[0].scrollIntoView(true);",scrollIntoElement);
 
 
 
