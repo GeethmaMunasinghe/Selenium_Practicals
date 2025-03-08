@@ -1,5 +1,7 @@
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -21,8 +23,14 @@ public class JavaScriptExecutorExample {
         JavascriptExecutor executor= (JavascriptExecutor) driver;
 
         //Get an alert box in to Web page using JavaScript
-        executor.executeScript("alert('Hello World');");
+        //executor.executeScript("alert('Hello World');");
 
+        //Set a input value in a text box
+            //method 01
+        WebElement inputTextBox=driver.findElement(By.xpath("//input[@id='name']"));
+        //executor.executeScript("arguments[0].value='Geethma Munasinghe';",inputTextBox);
+            //method 02
+        executor.executeScript("arguments[0].setAttribute('value','Geethma Munasinghe');",inputTextBox);
 
     }
 
