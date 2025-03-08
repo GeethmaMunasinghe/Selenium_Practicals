@@ -38,6 +38,15 @@ public class JavaScriptExecutorExample {
         executor.executeScript("arguments[0].style.border='3px solid red';",inputTextBox);
         executor.executeScript("arguments[0].style.background='yellow';",inputTextBox);
 
+        Thread.sleep(4000);
+
+        //Click element
+        WebElement mailCheckBox=driver.findElement(By.xpath("//input[@id='male']"));
+        executor.executeScript("arguments[0].click();",mailCheckBox);
+
+        Thread.sleep(4000);
+
+
 
 
     }
