@@ -50,6 +50,7 @@ public class JavaScriptExecutorExample {
         //Scrolling the page
         scrollPage(); //Calling the method
 
+        //Getting all attributes
 
 
 
@@ -75,8 +76,5 @@ public class JavaScriptExecutorExample {
         WebElement scrollIntoElement=driver.findElement(By.xpath("//label[text()='Gender:']"));
         executor.executeScript("arguments[0].scrollIntoView(true);",scrollIntoElement);
 
-
-
     }
-
 }
