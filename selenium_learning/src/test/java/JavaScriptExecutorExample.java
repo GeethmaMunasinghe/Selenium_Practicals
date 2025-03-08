@@ -19,7 +19,7 @@ public class JavaScriptExecutorExample {
     }
 
     @Test
-    public void JSExecutorTests(){
+    public void JSExecutorTests() throws InterruptedException {
         JavascriptExecutor executor= (JavascriptExecutor) driver;
 
         //Get an alert box in to Web page using JavaScript
@@ -31,6 +31,14 @@ public class JavaScriptExecutorExample {
         //executor.executeScript("arguments[0].value='Geethma Munasinghe';",inputTextBox);
             //method 02
         executor.executeScript("arguments[0].setAttribute('value','Geethma Munasinghe');",inputTextBox);
+
+        Thread.sleep(4000);
+
+        //Highlight element
+        executor.executeScript("arguments[0].style.border='3px solid red';",inputTextBox);
+        executor.executeScript("arguments[0].style.background='yellow';",inputTextBox);
+
+
 
     }
 
