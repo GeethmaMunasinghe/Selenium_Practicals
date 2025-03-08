@@ -50,10 +50,6 @@ public class JavaScriptExecutorExample {
         //Scrolling the page
         scrollPage(); //Calling the method
 
-        //Getting all attributes
-
-
-
 
     }
 
@@ -65,11 +61,11 @@ public class JavaScriptExecutorExample {
         Thread.sleep(5000);
 
         //scroll to bottom of the page by pixel number
-        executor.executeScript("window.scrollTo(0,document.body.scrollHeight);)");
+        executor.executeScript("window.scrollTo(0,document.body.scrollHeight);");
         Thread.sleep(5000);
 
         //scroll to the top of the page
-        executor.executeScript("window.scrollTo(0,0)");
+        executor.executeScript("window.scrollTo(0,0);");
         Thread.sleep(5000);
 
         //scroll the page till the element is visible
