@@ -14,6 +14,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
+import java.util.function.Function;
 
 public class FluentWaitDemo {
     WebDriver driver;
@@ -37,7 +38,18 @@ public class FluentWaitDemo {
 
 
         driver.findElement(By.xpath(" //button[@id='j_idt87:j_idt89']")).click();
-        String newBtnText=driver.findElement(By.xpath("//button[@id='j_idt87:j_idt90']/span")).getText();
+
+        WebElement fluentWaitElement=wait.until(new Function<WebDriver, WebElement>() {
+            @Override
+            public WebElement apply(WebDriver webDriver) {
+                return driver.findElement(By.xpath("//button[@id='j_idt87:j_idt90']/span"));
+            }
+        });
+
+        //second way
+        //WebElement fluentWaitElemet=wait.until(ExpectedConditions.visibilityOfElementLocated(newBtnLocator));
+
+        String newBtnText=fluentWaitElement.getText();
         System.out.println("New button text is: "+newBtnText);
     }
 
