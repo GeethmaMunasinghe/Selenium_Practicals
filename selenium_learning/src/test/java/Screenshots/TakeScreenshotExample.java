@@ -1,9 +1,7 @@
 package Screenshots;
 
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.io.FileHandler;
 import org.testng.annotations.BeforeMethod;
@@ -32,7 +30,11 @@ public class TakeScreenshotExample {
         File destination = new File("path/to/screenshots/screenshot.png"); // Check this path
         FileUtils.copyFile(screenshot, destination);
 
-
+        //2) Capture screenshot of section of a webpage
+        WebElement section1PageElement=driver.findElement(By.xpath("//*[@id='j_idt88']/div/div[1]"));
+        File source=section1PageElement.getScreenshotAs(OutputType.FILE);
+        File target=new File("path/to/screenshots/alert_section_of_the_page.png");
+        FileUtils.copyFile(source,target);
 
     }
 }
