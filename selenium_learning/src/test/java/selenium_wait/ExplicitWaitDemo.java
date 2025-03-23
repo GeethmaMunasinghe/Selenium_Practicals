@@ -17,7 +17,6 @@ public class ExplicitWaitDemo {
 
     @BeforeMethod
     public void openTablePage(){
-        System.setProperty("webdriver.chrome.driver","D:\\Level 4\\L4 S1\\Selenium Practice\\Driver\\chromedriver-win64\\chromedriver.exe");
         driver=new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); //till the driver.quit this will affect.here exception will hold
         driver.manage().window().maximize();
