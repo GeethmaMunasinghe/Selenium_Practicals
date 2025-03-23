@@ -1,5 +1,60 @@
 package selenium_wait;
 
-public class FluentWaitDemo {
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
+import java.time.Duration;
+import java.util.function.Function;
+
+public class FluentWaitDemo {
+    WebDriver driver;
+
+    @BeforeMethod
+    public void openTablePage(){
+        System.setProperty("webdriver.chrome.driver","D:\\Level 4\\L4 S1\\Selenium Practice\\Driver\\chromedriver-win64\\chromedriver.exe");
+        driver=new ChromeDriver();
+        // driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); //till the driver.quit this will affect.here exception will hold
+        driver.manage().window().maximize();
+        driver.get("https://www.leafground.com/waits.xhtml");
+    }
+
+    @Test
+    public void fluentWaitTest(){
+        //Declaration(Define fluent wait)
+        Wait<WebDriver> wait=new FluentWait<WebDriver>(driver)
+                                .withTimeout(Duration.ofSeconds(30))       //maximum time to wait
+                                .pollingEvery(Duration.ofSeconds(5))       //frequency to check the condition
+                                .ignoring(NoSuchElementException.class);   //ignore specific condition
+
+
+        driver.findElement(By.xpath(" //button[@id='j_idt87:j_idt89']")).click();
+
+        WebElement fluentWaitElement=wait.until(new Function<WebDriver, WebElement>() {
+            @Override
+            public WebElement apply(WebDriver webDriver) {
+                return driver.findElement(By.xpath("//button[@id='j_idt87:j_idt90']/span"));
+            }
+        });
+
+        //second way
+        //WebElement fluentWaitElemet=wait.until(ExpectedConditions.visibilityOfElementLocated(newBtnLocator));
+
+        String newBtnText=fluentWaitElement.getText();
+        System.out.println("New button text is: "+newBtnText);
+    }
+
+    @AfterMethod
+    public void closeBrowser(){
+        driver.quit();
+    }
 }
